@@ -41,4 +41,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * Get all of the investment for the Gain
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+    */
+    public function investment(): HasMany
+    {
+        return $this->hasMany(Investment::class);
+    }
 }

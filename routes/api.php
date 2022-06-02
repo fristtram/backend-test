@@ -2,6 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\InvestmentController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,4 +18,19 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+Route::prefix('/v1')->group( function() {
+
+    Route::prefix('/users')->group( function() {
+        Route::get('/list', [UserController::class, 'index']);
+        Route::post('/create', [UserController::class, 'create']);
+    });
+
+    Route::prefix('/investments')->group( function() {
+        Route::post('/invest', [InvestmentController::class, 'createInvestment']);
+        Route::get('/list/{invest}/{date}', [InvestmentController::class, 'getInvestment']);
+        Route::post('/withdrawal', [InvestmentController::class, 'withdrawalInvestment']);
+        Route::get('/withdrawal/{user}', [InvestmentController::class, 'personInvestment']);
+    });
 });

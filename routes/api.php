@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\InvestmentController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\Auth\ApiAuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,21 +17,21 @@ use App\Http\Controllers\UserController;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
 Route::prefix('/v1')->group( function() {
+    Route::post('/login', [ApiAuthController::class,'login']);
+    Route::post('/create-user', [ApiAuthController::class, 'create']);
 
-    Route::prefix('/users')->group( function() {
-        Route::get('/list', [UserController::class, 'index']);
-        Route::post('/create', [UserController::class, 'create']);
-    });
+    Route::middleware('auth:sanctum')->group( function() {
+        Route::get('/logout', [ApiAuthController::class, 'logout']);
 
-    Route::prefix('/investments')->group( function() {
-        Route::post('/invest', [InvestmentController::class, 'createInvestment']);
-        Route::get('/list/{invest}/{date}', [InvestmentController::class, 'getInvestment']);
-        Route::post('/withdrawal', [InvestmentController::class, 'withdrawalInvestment']);
-        Route::get('/withdrawal/{user}', [InvestmentController::class, 'personInvestment']);
+        Route::get('/list-user', [UserController::class, 'index']);
+
+        Route::prefix('/investments')->group( function() {
+            Route::get('/list', [InvestmentController::class, 'index']);
+            Route::post('/invest', [InvestmentController::class, 'createInvestment']);
+            Route::get('/list/{invest}/{date}', [InvestmentController::class, 'getInvestment']);
+            Route::post('/withdrawal', [InvestmentController::class, 'withdrawalInvestment']);
+            Route::get('/withdrawal/{user}', [InvestmentController::class, 'personInvestment']);
+        });
     });
 });

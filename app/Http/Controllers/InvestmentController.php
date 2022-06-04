@@ -8,6 +8,7 @@ use App\Models\Gain;
 use App\Models\Investment;
 use App\Services\BaseService;
 use App\Http\Requests\InvestmentRequest;
+use App\Http\Requests\GainRequest;
 use Auth;
 use Carbon\Carbon;
 
@@ -75,7 +76,7 @@ class InvestmentController extends Controller
         ], Response::HTTP_BAD_REQUEST);
     }
 
-    public function creatGain(Request $request)
+    public function creatGain(GainRequest $request)
     {
         $payload = [
             'value' => $request->get('value'),

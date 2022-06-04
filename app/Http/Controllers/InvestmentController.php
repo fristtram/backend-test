@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Models\Gain;
 use App\Models\Investment;
@@ -39,6 +38,9 @@ class InvestmentController extends Controller
         $this->middleware('auth:sanctum');
     }
 
+    /**
+     * Listar todos investimentos
+     */
     public function index()
     {
         return response()->json([
@@ -47,6 +49,9 @@ class InvestmentController extends Controller
         ], Response::HTTP_OK);
     }
 
+    /**
+     * Registrar o investimento
+     */
     public function createInvestment(InvestmentRequest $request)
     {
         $userID = Auth::user()->id;
@@ -83,6 +88,10 @@ class InvestmentController extends Controller
         ], Response::HTTP_BAD_REQUEST);
     }
 
+    /**
+     * Ver todos os investimentos e seus saldos esperados conforme
+     * a data de retirada anunciada
+     */
     public function getAllInvestment(AllInvestmentPaymentRequest $request)
     {
         $datePayment = new Carbon($request->get('date_payment'));
@@ -119,6 +128,10 @@ class InvestmentController extends Controller
         ], Response::HTTP_BAD_REQUEST);
     }
 
+    /**
+     * Ver o investimento e saldo esperado conforme
+     * a data de retirada anunciada
+     */
     public function getInvestment(InvestmentPaymentRequest $request)
     {
         $datePayment = new Carbon($request->get('date_payment'));
@@ -200,6 +213,9 @@ class InvestmentController extends Controller
         return $tax;
     }
 
+    /**
+     * Criar percentual de ganhos de investimento
+     */
     public function creatGain(GainRequest $request)
     {
         $payload = [
@@ -213,6 +229,9 @@ class InvestmentController extends Controller
         ], Response::HTTP_CREATED);
     }
 
+    /**
+     * Listar todos percentuais de ganho registrado
+     */
     public function getGain()
     {
         return response()->json([
@@ -221,6 +240,9 @@ class InvestmentController extends Controller
         ], Response::HTTP_OK);
     }
 
+    /**
+     * Listar todas as retiradas efetuadas
+     */
     public function getWithdrawal()
     {
         return response()->json([
@@ -229,6 +251,9 @@ class InvestmentController extends Controller
         ], Response::HTTP_OK);
     }
 
+    /**
+     * Aplicar retiradas de investimento
+     */
     public function withdrawalInvestment(WithdrawalsRequest $request)
     {
         $dateWithdrawal = new Carbon($request->get('date_withdrawal'));

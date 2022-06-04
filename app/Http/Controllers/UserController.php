@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Services\BaseService;
 use App\Models\User;
 use Illuminate\Http\Response;
-use Auth;
 
 class UserController extends Controller
 {
@@ -24,6 +22,9 @@ class UserController extends Controller
         $this->middleware('auth:sanctum');
     }
 
+    /**
+     * Listar usuários de sistema
+     */
     public function index()
     {
         return response()->json([

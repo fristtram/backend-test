@@ -6,6 +6,9 @@ use Auth;
 
 class BaseRepository
 {
+    /**
+     * Método create genérico
+     */
     public function create($model, array $payload)
     {
         DB::beginTransaction();
@@ -19,16 +22,25 @@ class BaseRepository
         }
 	}
 
+    /**
+     * Método genérico para listar todos
+     */
     public function getAll($model)
     {
         return $model::get();
 	}
 
+    /**
+     * Método genérico para listar um elemento
+     */
     public function getOne($model, int $id)
     {
         return $model::find($id);
 	}
 
+    /**
+     * Visualizar um ou mais investimento de um investidor
+     */
     public function viewInvestment($model, int $id = null)
     {
         $query = $model::select(

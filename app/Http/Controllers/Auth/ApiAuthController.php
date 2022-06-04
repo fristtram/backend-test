@@ -25,6 +25,9 @@ class ApiAuthController extends Controller
         $this->baseService = $baseService;
     }
 
+    /**
+     * Criar conta de usuário
+     */
     public function create(Request $request)
     {
         try {
@@ -49,14 +52,21 @@ class ApiAuthController extends Controller
         }
     }
 
+    /**
+     * Validação de dados cadastrais
+     */
     public function validated($request)
     {
         return $request->validate([
+            'name' => 'required|string',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8|confirmed'
         ]);
     }
 
+    /**
+     * Login de sistema
+     */
     public function login(Request $request)
     {
         $this->validateLogin($request);
@@ -73,6 +83,9 @@ class ApiAuthController extends Controller
         }
     }
 
+    /**
+     * Validar email e password
+     */
     public function validateLogin($request)
     {
         $data = $request->all();
@@ -99,6 +112,9 @@ class ApiAuthController extends Controller
         }
     }
 
+    /**
+     * Logout de sistema
+     */
     public function logout()
     {
         if (Auth::check()) {

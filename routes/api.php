@@ -1,10 +1,8 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\InvestmentController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\WithdrawalController;
 use App\Http\Controllers\Auth\ApiAuthController;
 
 /*
@@ -22,16 +20,25 @@ Route::prefix('/v1')->group( function() {
     Route::post('/login', [ApiAuthController::class,'login']);
     Route::post('/create-user', [ApiAuthController::class, 'create']);
 
+    /**
+     * Todas as rotas estão protegidas pelo middleware sanctum
+     * que será acessado via Token de login
+     */
     Route::middleware('auth:sanctum')->group( function() {
         Route::get('/logout', [ApiAuthController::class, 'logout']);
-
         Route::get('/list-user', [UserController::class, 'index']);
 
+        /**
+         * Recursos do Endpoint percentual de ganho/lucro
+         */
         Route::prefix('/gain')->group( function() {
             Route::get('/list', [InvestmentController::class, 'getGain']);
             Route::post('/create', [InvestmentController::class, 'creatGain']);
         });
 
+        /**
+         * Recursos do Endpoint investimeto
+         */
         Route::prefix('/investments')->group( function() {
             Route::get('/list', [InvestmentController::class, 'index']);
             Route::post('/invest', [InvestmentController::class, 'createInvestment']);
@@ -41,6 +48,9 @@ Route::prefix('/v1')->group( function() {
             Route::post('/view-all-investment', [InvestmentController::class, 'getAllInvestment']);
         });
 
+        /**
+         * Recursos do Endpoint retirada de investimento
+         */
         Route::prefix('/withdrawals')->group( function() {
             Route::get('/list', [InvestmentController::class, 'getWithdrawal']);
             Route::post('/request', [InvestmentController::class, 'withdrawalInvestment']);

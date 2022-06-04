@@ -19,6 +19,7 @@ return new class extends Migration
             $table->unsignedBigInteger('gains_id');
             $table->decimal('amount', 10,2);
             $table->date('date');
+            $table->timestamps();
 
             $table->foreign('users_id')->references('id')->on('users');
             $table->foreign('gains_id')->references('id')->on('gains');

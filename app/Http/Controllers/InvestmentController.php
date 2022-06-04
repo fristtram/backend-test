@@ -7,7 +7,9 @@ use Illuminate\Http\Response;
 use App\Models\Gain;
 use App\Models\Investment;
 use App\Services\BaseService;
+use App\Http\Requests\InvestmentRequest;
 use Auth;
+use Carbon\Carbon;
 
 class InvestmentController extends Controller
 {
@@ -35,6 +37,42 @@ class InvestmentController extends Controller
             'success' => true,
             'data' => $this->baseService->getAll($this->investment)
         ], Response::HTTP_OK);
+    }
+
+    public function createInvestment(InvestmentRequest $request)
+    {
+        $userID = Auth::user()->id;
+        $today = Carbon::today();
+        $dateInvest = new Carbon($request->get('date'));
+        $gain = $this->baseService->getOne($this->gain, $request->get('gains_id'));
+        if (!is_null($gain)) {
+            $payload = [
+                'users_id' => $userID,
+                'gains_id' => $gain->id,
+                'gains_id' => $request->get('gains_id'),
+                'amount' => $request->get('amount'),
+                'date' => $dateInvest->toDateString(),
+            ];
+            if ($dateInvest->toDateString() <= $today->toDateString()) {
+                $data = $this->baseService->create($this->investment, $payload);
+                if ($data) {
+                    return response()->json([
+                        'success' => true,
+                        'data' => $data
+                    ], Response::HTTP_CREATED);
+                }
+                $message = 'Request cannot be processed';
+            } else {
+                $message = 'Cannot apply the investment in the future';
+            }
+        } else {
+            $message = 'Integrity constraint violation: foreign key constraint of gain fails';
+        }
+
+        return response()->json([
+            'success' => false,
+            'message' => $message
+        ], Response::HTTP_BAD_REQUEST);
     }
 
     public function creatGain(Request $request)

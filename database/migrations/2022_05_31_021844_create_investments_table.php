@@ -18,6 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('users_id');
             $table->unsignedBigInteger('gains_id');
             $table->decimal('amount', 10,2);
+            $table->boolean('status')->default(0);
             $table->date('date');
             $table->timestamps();
 

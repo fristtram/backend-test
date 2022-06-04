@@ -26,6 +26,11 @@ Route::prefix('/v1')->group( function() {
 
         Route::get('/list-user', [UserController::class, 'index']);
 
+        Route::prefix('/gain')->group( function() {
+            Route::get('/list', [InvestmentController::class, 'getGain']);
+            Route::post('/create', [InvestmentController::class, 'creatGain']);
+        });
+
         Route::prefix('/investments')->group( function() {
             Route::get('/list', [InvestmentController::class, 'index']);
             Route::post('/invest', [InvestmentController::class, 'createInvestment']);

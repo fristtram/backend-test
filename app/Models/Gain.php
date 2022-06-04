@@ -14,7 +14,7 @@ class Gain extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'name'
+        'value'
     ];
 
     /**

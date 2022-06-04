@@ -30,4 +30,9 @@ class BaseService
     {
         return $this->baseRepository->getOne($model, $id);
     }
+
+    public function viewInvestment($model, $id)
+    {
+        return $this->baseRepository->viewInvestment($model, $id);
+    }
 }

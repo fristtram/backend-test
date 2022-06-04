@@ -34,9 +34,9 @@ Route::prefix('/v1')->group( function() {
         Route::prefix('/investments')->group( function() {
             Route::get('/list', [InvestmentController::class, 'index']);
             Route::post('/invest', [InvestmentController::class, 'createInvestment']);
-            Route::get('/list/{invest}/{date}', [InvestmentController::class, 'getInvestment']);
+            Route::post('/view-investment', [InvestmentController::class, 'getInvestment']);
             Route::post('/withdrawal', [InvestmentController::class, 'withdrawalInvestment']);
-            Route::get('/withdrawal/{user}', [InvestmentController::class, 'personInvestment']);
+            Route::post('/view-all-investment', [InvestmentController::class, 'getAllInvestment']);
         });
     });
 });

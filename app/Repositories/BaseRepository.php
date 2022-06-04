@@ -27,4 +27,18 @@ class BaseRepository
     {
         return $model::find($id);
 	}
+
+    public function viewInvestment($model, int $id)
+    {
+        return $model::select(
+            'users.name as investor',
+            'investments.amount as initial_amount',
+            'investments.date as investment_date',
+            'gains.value as gain_percentage'
+            )
+            ->join('users', 'users.id', 'investments.users_id')
+            ->join('gains', 'gains.id', 'investments.gains_id')
+            ->where('investments.id',$id)
+            ->first();
+	}
 }

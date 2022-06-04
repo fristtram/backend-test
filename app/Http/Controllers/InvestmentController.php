@@ -9,6 +9,7 @@ use App\Models\Investment;
 use App\Services\BaseService;
 use App\Http\Requests\InvestmentRequest;
 use App\Http\Requests\GainRequest;
+use App\Http\Requests\InvestmentPaymentRequest;
 use Auth;
 use Carbon\Carbon;
 
@@ -74,6 +75,87 @@ class InvestmentController extends Controller
             'success' => false,
             'message' => $message
         ], Response::HTTP_BAD_REQUEST);
+    }
+
+    public function getInvestment(InvestmentPaymentRequest $request)
+    {
+        $datePayment = new Carbon($request->get('date_payment'));
+        $investment = $this->baseService->viewInvestment($this->investment, $request->get('invest_id'));
+        if (!is_null($investment)) {
+            $investmentDate = new Carbon($investment->investment_date);
+            if ($investment->investment_date <= $datePayment->toDateString()) {
+                $days = $datePayment->diffInDays($investmentDate);
+                if ($days >= 30) {
+                    $amountMonth = floor($days/30);
+                    $data = $this->gainCalculation(intval($amountMonth), $investment);
+
+                    $data->investor = $investment->investor;
+                    $data->investment_date = $investment->investment_date;
+                    $data->gain_percentage = $investment->gain_percentage;
+
+                    return response()->json([
+                        'success' => true,
+                        'data' => $data
+                    ], Response::HTTP_OK);
+                } else {
+                    $message = 'Investment less than 1 month';
+                }
+            } else {
+                $message = 'Investment less than 1 month';
+            }
+        } else {
+            $message = 'Integrity constraint violation: foreign key constraint of investment fails';
+        }
+        return response()->json([
+            'success' => false,
+            'message' => $message
+        ], Response::HTTP_BAD_REQUEST);
+    }
+
+    /**
+     * Calculo de ganho conforme a retirada desejada
+     */
+    public function gainCalculation($amountMonth, $investment)
+    {
+        $initial = $investment->initial_amount;
+        $percentage = $investment->gain_percentage;
+
+        $loop = 1;
+        $amountWithGain = $initial;
+        while ($loop <= $amountMonth) {
+            $gainMonth = $amountWithGain*$percentage;
+            $amountWithGain = $gainMonth + $amountWithGain;
+            $loop++;
+        }
+
+        $gainTotal = $amountWithGain - $initial;
+        $taxation = $this->taxationCalculation($gainTotal, $amountMonth);
+
+        $month = ($amountMonth > 1) ? ' months' : ' month';
+
+        return (object)[
+            'initial_amount' => $initial,
+            'amount_with_gain' => number_format($amountWithGain,2,",","."),
+            'taxation' => number_format($taxation,2,",","."),
+            'net_amount' => number_format(($amountWithGain - $taxation),2,",","."),
+            'investment_period' => $amountMonth . $month
+        ];
+    }
+
+    /**
+     * Calculo da tributação (imposto)
+     */
+    public function taxationCalculation($gainTotal, $amountMonth)
+    {
+        $tax = 0;
+        if ($amountMonth < 12) {
+            $tax = $gainTotal*0.225;
+        } elseif($amountMonth >= 12 && $amountMonth <= 24) {
+            $tax = $gainTotal*0.185;
+        } else {
+            $tax = $gainTotal*0.15;
+        }
+        return $tax;
     }
 
     public function creatGain(GainRequest $request)

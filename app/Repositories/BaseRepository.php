@@ -14,6 +14,7 @@ class BaseRepository
             DB::commit();
             return $result;
         } catch (\Throwable $e) {
+            dd($e->getMessage());
             DB::rollBack();
         }
 	}
@@ -32,6 +33,7 @@ class BaseRepository
     {
         $query = $model::select(
             'users.name as investor',
+            'investments.status',
             'investments.amount as initial_amount',
             'investments.date as investment_date',
             'gains.value as gain_percentage'

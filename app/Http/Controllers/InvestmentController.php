@@ -6,11 +6,13 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Models\Gain;
 use App\Models\Investment;
+use App\Models\Withdrawal;
 use App\Services\BaseService;
 use App\Http\Requests\InvestmentRequest;
 use App\Http\Requests\GainRequest;
 use App\Http\Requests\InvestmentPaymentRequest;
 use App\Http\Requests\AllInvestmentPaymentRequest;
+use App\Http\Requests\WithdrawalsRequest;
 use Auth;
 use Carbon\Carbon;
 
@@ -19,17 +21,20 @@ class InvestmentController extends Controller
     private $gain;
     private $investment;
     private $baseService;
+    private $withdrawal;
     /**
     * @return void
     */
     public function __construct(
         Gain $gain,
         Investment $investment,
-        BaseService $baseService
+        BaseService $baseService,
+        Withdrawal $withdrawal
         )
     {
         $this->gain = $gain;
         $this->investment = $investment;
+        $this->withdrawal = $withdrawal;
         $this->baseService = $baseService;
         $this->middleware('auth:sanctum');
     }
@@ -214,5 +219,76 @@ class InvestmentController extends Controller
             'success' => true,
             'data' => $this->baseService->getAll($this->gain)
         ], Response::HTTP_OK);
+    }
+
+    public function getWithdrawal()
+    {
+        return response()->json([
+            'success' => true,
+            'data' => $this->baseService->getAll($this->withdrawal)
+        ], Response::HTTP_OK);
+    }
+
+    public function withdrawalInvestment(WithdrawalsRequest $request)
+    {
+        $dateWithdrawal = new Carbon($request->get('date_withdrawal'));
+        $investment = $this->baseService->viewInvestment($this->investment, $request->get('investment_id'));
+
+        if (!is_null($investment)) {
+            if ($investment->status == 0) {
+                $investmentDate = new Carbon($investment->investment_date);
+                if ($investment->investment_date <= $dateWithdrawal->toDateString()) {
+                    $days = $dateWithdrawal->diffInDays($investmentDate);
+                    if ($days >= 30) {
+                        $amountMonth = floor($days/30);
+                        $data = $this->gainCalculation(intval($amountMonth), $investment);
+
+                        // Registrar retirada
+                        $data->gain_percentage = $investment->gain_percentage;
+                        $taxation = str_replace('.', '', $data->taxation);
+                        $taxation = str_replace(',', '.', $taxation);
+                        $net_amount = str_replace('.', '', $data->net_amount);
+                        $net_amount = str_replace(',', '.', $net_amount);
+
+                        $payload = [
+                            'investment_id' => $request->get('investment_id'),
+                            'taxation' => $taxation,
+                            'amount_withdrawn' => $net_amount
+                        ];
+                        $data = $this->baseService->create($this->withdrawal, $payload);
+
+                        // Retirar o investimento
+                        $investment = $this->baseService->getOne($this->investment, $request->get('investment_id'));
+                        $dataUpdate = [
+                            'status' => 1,
+                            'amount' => 0.00
+                        ];
+                        $investment->update($dataUpdate);
+
+                        return response()->json([
+                            'success' => true,
+                            'data' => $data
+                        ], Response::HTTP_OK);
+                    } else {
+                        $message = 'Investment less than 1 month';
+                    }
+                } else {
+                    $message = 'Investment less than 1 month';
+                }
+            } else {
+                $message = 'This investment has already been withdrawn';
+            }
+
+        } else {
+            $message = 'Integrity constraint violation: foreign key constraint of investment fails';
+        }
+        return response()->json([
+            'success' => false,
+            'message' => $message
+        ], Response::HTTP_BAD_REQUEST);
+        return response()->json([
+            'success' => true,
+            'data' => $data
+        ], Response::HTTP_CREATED);
     }
 }

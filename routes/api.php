@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\InvestmentController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\WithdrawalController;
 use App\Http\Controllers\Auth\ApiAuthController;
 
 /*
@@ -35,8 +36,14 @@ Route::prefix('/v1')->group( function() {
             Route::get('/list', [InvestmentController::class, 'index']);
             Route::post('/invest', [InvestmentController::class, 'createInvestment']);
             Route::post('/view-investment', [InvestmentController::class, 'getInvestment']);
+            Route::get('/list-withdrawal', [InvestmentController::class, 'getWithdrawal']);
             Route::post('/withdrawal', [InvestmentController::class, 'withdrawalInvestment']);
             Route::post('/view-all-investment', [InvestmentController::class, 'getAllInvestment']);
+        });
+
+        Route::prefix('/withdrawals')->group( function() {
+            Route::get('/list', [InvestmentController::class, 'getWithdrawal']);
+            Route::post('/request', [InvestmentController::class, 'withdrawalInvestment']);
         });
     });
 });

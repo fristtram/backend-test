@@ -16,6 +16,7 @@ class Investment extends Model
         'users_id',
         'gains_id',
         'amount',
+        'status',
         'date'
     ];
 

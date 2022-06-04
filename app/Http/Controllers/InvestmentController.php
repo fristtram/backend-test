@@ -10,6 +10,7 @@ use App\Services\BaseService;
 use App\Http\Requests\InvestmentRequest;
 use App\Http\Requests\GainRequest;
 use App\Http\Requests\InvestmentPaymentRequest;
+use App\Http\Requests\AllInvestmentPaymentRequest;
 use Auth;
 use Carbon\Carbon;
 
@@ -71,6 +72,42 @@ class InvestmentController extends Controller
             $message = 'Integrity constraint violation: foreign key constraint of gain fails';
         }
 
+        return response()->json([
+            'success' => false,
+            'message' => $message
+        ], Response::HTTP_BAD_REQUEST);
+    }
+
+    public function getAllInvestment(AllInvestmentPaymentRequest $request)
+    {
+        $datePayment = new Carbon($request->get('date_payment'));
+        $investments = $this->baseService->viewInvestment($this->investment);
+        if (!is_null($investments)) {
+            $allInvest = [];
+            foreach ($investments as $value) {
+                $investmentDate = new Carbon($value->investment_date);
+                if ($value->investment_date <= $datePayment->toDateString()) {
+                    $days = $datePayment->diffInDays($investmentDate);
+                    if ($days >= 30) {
+                        $amountMonth = floor($days/30);
+                        $data = $this->gainCalculation(intval($amountMonth), $value);
+
+                        $data->investor = $value->investor;
+                        $data->investment_date = $value->investment_date;
+                        $data->gain_percentage = $value->gain_percentage;
+                        $allInvest[] = $data;
+                    }
+                }
+            }
+
+            return response()->json([
+                'success' => true,
+                'data' => $allInvest
+            ], Response::HTTP_OK);
+
+        } else {
+            $message = 'Integrity constraint violation: foreign key constraint of investment fails';
+        }
         return response()->json([
             'success' => false,
             'message' => $message

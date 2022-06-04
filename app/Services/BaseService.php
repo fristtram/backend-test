@@ -31,7 +31,7 @@ class BaseService
         return $this->baseRepository->getOne($model, $id);
     }
 
-    public function viewInvestment($model, $id)
+    public function viewInvestment($model, $id = null)
     {
         return $this->baseRepository->viewInvestment($model, $id);
     }

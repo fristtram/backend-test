@@ -28,17 +28,23 @@ class BaseRepository
         return $model::find($id);
 	}
 
-    public function viewInvestment($model, int $id)
+    public function viewInvestment($model, int $id = null)
     {
-        return $model::select(
+        $query = $model::select(
             'users.name as investor',
             'investments.amount as initial_amount',
             'investments.date as investment_date',
             'gains.value as gain_percentage'
             )
             ->join('users', 'users.id', 'investments.users_id')
-            ->join('gains', 'gains.id', 'investments.gains_id')
-            ->where('investments.id',$id)
-            ->first();
+            ->join('gains', 'gains.id', 'investments.gains_id');
+
+        if (!is_null($id)) {
+            $query->where('investments.id', $id);
+            return $query->first();
+        } else {
+            $query->where('users.id', Auth::user()->id);
+            return $query->get();
+        }
 	}
 }

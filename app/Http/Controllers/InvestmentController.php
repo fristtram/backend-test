@@ -204,11 +204,11 @@ class InvestmentController extends Controller
     {
         $tax = 0;
         if ($amountMonth < 12) {
-            $tax = $gainTotal*0.225;
+            $tax = $gainTotal*env('TAX_LESS_YEAR');
         } elseif($amountMonth >= 12 && $amountMonth <= 24) {
-            $tax = $gainTotal*0.185;
+            $tax = $gainTotal*env('TAX_TWO_YEARS');
         } else {
-            $tax = $gainTotal*0.15;
+            $tax = $gainTotal*env('TAX_LONGER_TIME');
         }
         return $tax;
     }

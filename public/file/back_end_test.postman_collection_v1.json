@@ -1,0 +1,853 @@
+{
+	"id": "20a9efc9-30a3-4bb7-5270-3f49d2f09fc9",
+	"name": "Back-End Test",
+	"description": "",
+	"order": [],
+	"folders": [
+		{
+			"name": "Auth",
+			"description": "",
+			"collectionId": "20a9efc9-30a3-4bb7-5270-3f49d2f09fc9",
+			"order": [
+				"dd5fe018-d9b7-c183-29b3-52d883bca9bf",
+				"7db947a9-5df7-2cf2-e9e4-fd682a1dbe68"
+			],
+			"owner": "2683459",
+			"folders_order": [],
+			"id": "29deb86d-7555-452e-0573-d91445e6fe5b"
+		},
+		{
+			"name": "Gain",
+			"description": "",
+			"collectionId": "20a9efc9-30a3-4bb7-5270-3f49d2f09fc9",
+			"order": [
+				"a1002466-6a1d-0c0f-a6ae-b2a6a0048e12",
+				"209f3e34-2a6a-49c4-02fc-3f310b9e78e0"
+			],
+			"owner": "2683459",
+			"folders_order": [],
+			"id": "28bc9d0d-3d3c-2574-5fcd-8fc2393e6b97"
+		},
+		{
+			"name": "Investment",
+			"description": "",
+			"collectionId": "20a9efc9-30a3-4bb7-5270-3f49d2f09fc9",
+			"order": [
+				"d23a4579-b8af-d219-2582-47ccbd760610",
+				"6f52ab27-4def-d79b-65d9-0783cd652830",
+				"1b512272-f977-c839-25ac-773a1dddfb1d"
+			],
+			"owner": "2683459",
+			"folders_order": [],
+			"id": "7402f2aa-a77f-5a5a-f071-be46e4d80ff7"
+		},
+		{
+			"name": "User",
+			"description": "",
+			"collectionId": "20a9efc9-30a3-4bb7-5270-3f49d2f09fc9",
+			"order": [
+				"c33c4555-42ab-9255-2d38-c35734cd1fd6",
+				"bcaf7a68-ff07-140b-29a7-cf801a239283"
+			],
+			"owner": "2683459",
+			"folders_order": [],
+			"id": "9b10e99f-09f2-a69e-9c59-b926d83bbd5d"
+		},
+		{
+			"name": "Withdrawals",
+			"description": "",
+			"collectionId": "20a9efc9-30a3-4bb7-5270-3f49d2f09fc9",
+			"order": [
+				"53ee8da2-1b93-a5e4-e91e-815bcff583c7",
+				"d578ba38-4c01-0e2d-c18b-2bd82d901a74"
+			],
+			"owner": "2683459",
+			"folders_order": [],
+			"id": "0bf4d180-0415-45cc-0442-11271f2bb3db"
+		}
+	],
+	"folders_order": [
+		"29deb86d-7555-452e-0573-d91445e6fe5b",
+		"9b10e99f-09f2-a69e-9c59-b926d83bbd5d",
+		"28bc9d0d-3d3c-2574-5fcd-8fc2393e6b97",
+		"7402f2aa-a77f-5a5a-f071-be46e4d80ff7",
+		"0bf4d180-0415-45cc-0442-11271f2bb3db"
+	],
+	"timestamp": 1654013639277,
+	"owner": "2683459",
+	"public": false,
+	"requests": [
+		{
+			"id": "05cf882d-15bb-89b0-84f4-2d24e6ed134f",
+			"headers": "",
+			"headerData": [],
+			"url": "localhost:8000/api/v1/create-user",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "POST",
+			"collectionId": "20a9efc9-30a3-4bb7-5270-3f49d2f09fc9",
+			"data": [
+				{
+					"key": "name",
+					"value": "Fristtram Fernandes",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "email",
+					"value": "fristtram2@gmail.com",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "password",
+					"value": "12345678",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "password_confirmation",
+					"value": "12345678",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "params",
+			"name": "Create user",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1654454152668,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"folder": "2981bbc9-d986-7a6a-390e-8542626a6a79",
+			"folderId": "2981bbc9-d986-7a6a-390e-8542626a6a79"
+		},
+		{
+			"id": "1b512272-f977-c839-25ac-773a1dddfb1d",
+			"headers": "Accept: application/json\nAuthorization: Bearer 11|YLkHpbI8L8viJFloI5morAuTixi9Iz69DLDErhpP\n",
+			"headerData": [
+				{
+					"key": "Accept",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Authorization",
+					"value": "Bearer 11|YLkHpbI8L8viJFloI5morAuTixi9Iz69DLDErhpP",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "localhost:8000/api/v1/investments/view-investment",
+			"folder": "7402f2aa-a77f-5a5a-f071-be46e4d80ff7",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [
+				{
+					"key": "invest_id",
+					"value": "4",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "date_payment",
+					"value": "2022-07-12",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "params",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1654453519083,
+			"name": "Investment with Balance",
+			"description": "",
+			"collectionId": "20a9efc9-30a3-4bb7-5270-3f49d2f09fc9",
+			"responses": []
+		},
+		{
+			"id": "209f3e34-2a6a-49c4-02fc-3f310b9e78e0",
+			"headers": "Accept: application/json\nAuthorization: Bearer 10|t20kZfl47hoJlxPOT0JvgYiWAqSP1vQ2Dks52BeG\n",
+			"headerData": [
+				{
+					"key": "Accept",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Authorization",
+					"value": "Bearer 10|t20kZfl47hoJlxPOT0JvgYiWAqSP1vQ2Dks52BeG",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "localhost:8000/api/v1/gain/create",
+			"folder": "28bc9d0d-3d3c-2574-5fcd-8fc2393e6b97",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [
+				{
+					"key": "value",
+					"value": "0.90",
+					"description": "Exemplo value: 0.90",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "params",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1654307916170,
+			"name": "Create Gaint",
+			"description": "",
+			"collectionId": "20a9efc9-30a3-4bb7-5270-3f49d2f09fc9",
+			"responses": []
+		},
+		{
+			"id": "3a1fb70c-2557-7380-eb4c-b8c7188b8d19",
+			"headers": "",
+			"headerData": [],
+			"url": "localhost:8000/api/v1/create-user",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "POST",
+			"collectionId": "20a9efc9-30a3-4bb7-5270-3f49d2f09fc9",
+			"data": [
+				{
+					"key": "name",
+					"value": "Fristtram Fernandes",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "email",
+					"value": "fristtram2@gmail.com",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "password",
+					"value": "12345678",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "password_confirmation",
+					"value": "12345678",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "params",
+			"name": "Create user",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1654454167854,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"folder": "2981bbc9-d986-7a6a-390e-8542626a6a79",
+			"folderId": "2981bbc9-d986-7a6a-390e-8542626a6a79"
+		},
+		{
+			"id": "3a674d9a-4e63-20a8-5e6f-7bb118227e74",
+			"headers": "",
+			"headerData": [],
+			"url": "localhost:8000/api/v1/create-user",
+			"folder": "2981bbc9-d986-7a6a-390e-8542626a6a79",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [
+				{
+					"key": "name",
+					"value": "Fristtram Fernandes",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "email",
+					"value": "fristtram2@gmail.com",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "password",
+					"value": "12345678",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "password_confirmation",
+					"value": "12345678",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "params",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1654453529538,
+			"name": "Create user",
+			"description": "",
+			"collectionId": "20a9efc9-30a3-4bb7-5270-3f49d2f09fc9",
+			"responses": [],
+			"folderId": "2981bbc9-d986-7a6a-390e-8542626a6a79"
+		},
+		{
+			"id": "53ee8da2-1b93-a5e4-e91e-815bcff583c7",
+			"headers": "Accept: application/json\nAuthorization: Bearer 11|YLkHpbI8L8viJFloI5morAuTixi9Iz69DLDErhpP\n",
+			"headerData": [
+				{
+					"key": "Accept",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Authorization",
+					"value": "Bearer 11|YLkHpbI8L8viJFloI5morAuTixi9Iz69DLDErhpP",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "localhost:8000/api/v1/withdrawals/request",
+			"folder": "0bf4d180-0415-45cc-0442-11271f2bb3db",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [
+				{
+					"key": "investment_id",
+					"value": "7",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "date_withdrawal",
+					"value": "2022-07-30",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "params",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1654366080151,
+			"name": "Create withdrawal",
+			"description": "",
+			"collectionId": "20a9efc9-30a3-4bb7-5270-3f49d2f09fc9",
+			"responses": [],
+			"folderId": "0bf4d180-0415-45cc-0442-11271f2bb3db"
+		},
+		{
+			"id": "6f52ab27-4def-d79b-65d9-0783cd652830",
+			"headers": "Accept: application/json\nAuthorization: Bearer 6|YLkHpbI8L8viJFloI5morAuTixi9Iz69DLDErhpP\n",
+			"headerData": [
+				{
+					"key": "Accept",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Authorization",
+					"value": "Bearer 6|YLkHpbI8L8viJFloI5morAuTixi9Iz69DLDErhpP",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "localhost:8000/api/v1/investments/list",
+			"folder": "7402f2aa-a77f-5a5a-f071-be46e4d80ff7",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1654453525304,
+			"name": "List All",
+			"description": "",
+			"collectionId": "20a9efc9-30a3-4bb7-5270-3f49d2f09fc9",
+			"responses": []
+		},
+		{
+			"id": "7db947a9-5df7-2cf2-e9e4-fd682a1dbe68",
+			"headers": "Accept: application/json\nAuthorization: Bearer 9|9It05fjTF8B996PVvEHup3Zwh1uuT9AK0i0KDqms\n",
+			"headerData": [
+				{
+					"key": "Accept",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Authorization",
+					"value": "Bearer 9|9It05fjTF8B996PVvEHup3Zwh1uuT9AK0i0KDqms",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "localhost:8000/api/v1/logout",
+			"folder": "29deb86d-7555-452e-0573-d91445e6fe5b",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": [
+				{
+					"key": "email",
+					"value": "fristtram@gmail.com",
+					"description": "",
+					"type": "text",
+					"enabled": false
+				},
+				{
+					"key": "password",
+					"value": "123456",
+					"description": "",
+					"type": "text",
+					"enabled": false
+				},
+				{
+					"key": "Authorization",
+					"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiMzM5ZTE4MmMyZWEyMGI0OWRhOTQ0MmYyYjZiOGI1OTRhMzE2MGJhYmQzOWVhYzZmNjY3ZTY2NmM0YmQzNzljOTJhYTZmYzA3ZjZkNzQwZWMiLCJpYXQiOjE2MjUxMDc2NzAsIm5iZiI6MTYyNTEwNzY3MCwiZXhwIjoxNjI1MTE4NDcwLCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.QVOsrZik1na0TUSK-HZsXGgYQpGTSAvlgucTDiexrzFSoO4A9kISgv3Uq0VPzu9fRO4aEj_GBLon7GNWXPa0NBjE3Ow6_0Zv6e13pwOEY_B2vPSlWh23tfhYmTBdBmPmH-5YxIh9BlGFgMnOIN_WLzdhPZ03xBcbt3NB-x5inJmc_Dw0be7s5yaeHejaQTmUCwHvZP0oaVwWDTRl9uarH9zL8cDJ6uF_8AXDsB84gOb0Yx2sqTbWdsKqA9L1Erx800quTj6XVSZIpO6AXFlqc5niHM1AlJxj4CWDME53chAthSV1pOObkp3rJNoeGuGOcqlUsQa--HcPE2iEr713fTFOSO1uoL7XgpAyZSF2mtWofAw8_0bLi3S96NCZPPwm9tiljp0Y5fh_4J8gChnbWvHSXYAwCBg8h-3DfyIem2HnbtXGNkxKTe_JdMz6LKrEks3WAG-yopZhaofEtiH8Wl144v79lnHAwNHxXRFaiKF9pIlOg_QZmRefPrhYLMYB9OoKMPhlTr0HQRmLCL9LeSWDyr_1LAaR2-L0dHJwKitz8wrHs8kU1ZQUz_3lNJ_vSRj16HaEUNGg0e3R4vpi7m0cLaEyO910Np1b1hQEegd8biO4IejdWc8vkPfv45EP8Dla2RRVeNlUSbeUbIPx81P35oD4Bvtal_VhLc_g6Eo",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "params",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1654298954069,
+			"name": "Logout",
+			"description": "",
+			"collectionId": "20a9efc9-30a3-4bb7-5270-3f49d2f09fc9",
+			"responses": [],
+			"isFromCollection": true,
+			"collectionRequestId": "7db947a9-5df7-2cf2-e9e4-fd682a1dbe68"
+		},
+		{
+			"id": "9bdbbba3-8f97-9f0a-a871-23947abd60af",
+			"headers": "",
+			"headerData": [],
+			"url": "localhost:8000/api/v1/create-user",
+			"folder": "9b10e99f-09f2-a69e-9c59-b926d83bbd5d",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [
+				{
+					"key": "name",
+					"value": "Fristtram Fernandes",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "email",
+					"value": "fristtram2@gmail.com",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "password",
+					"value": "12345678",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "password_confirmation",
+					"value": "12345678",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "params",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1654454143552,
+			"name": "Create user",
+			"description": "",
+			"collectionId": "20a9efc9-30a3-4bb7-5270-3f49d2f09fc9",
+			"responses": []
+		},
+		{
+			"id": "a1002466-6a1d-0c0f-a6ae-b2a6a0048e12",
+			"headers": "Accept: application/json\nAuthorization: Bearer 11|YLkHpbI8L8viJFloI5morAuTixi9Iz69DLDErhpP\n",
+			"headerData": [
+				{
+					"key": "Accept",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Authorization",
+					"value": "Bearer 11|YLkHpbI8L8viJFloI5morAuTixi9Iz69DLDErhpP",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "localhost:8000/api/v1/gain/list",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "GET",
+			"collectionId": "20a9efc9-30a3-4bb7-5270-3f49d2f09fc9",
+			"data": null,
+			"dataMode": "params",
+			"name": "List gain",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1654299542135,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"isFromCollection": true,
+			"collectionRequestId": "a1002466-6a1d-0c0f-a6ae-b2a6a0048e12",
+			"folder": "28bc9d0d-3d3c-2574-5fcd-8fc2393e6b97"
+		},
+		{
+			"id": "bcaf7a68-ff07-140b-29a7-cf801a239283",
+			"headers": "",
+			"headerData": [],
+			"url": "localhost:8000/api/v1/create-user",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "POST",
+			"collectionId": "20a9efc9-30a3-4bb7-5270-3f49d2f09fc9",
+			"data": [
+				{
+					"key": "name",
+					"value": "Fristtram Fernandes",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "email",
+					"value": "fristtram2@gmail.com",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "password",
+					"value": "12345678",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "password_confirmation",
+					"value": "12345678",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "params",
+			"name": "Create user",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1654454189142,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"folder": "9b10e99f-09f2-a69e-9c59-b926d83bbd5d"
+		},
+		{
+			"id": "c33c4555-42ab-9255-2d38-c35734cd1fd6",
+			"headers": "Accept: application/json\nAuthorization: Bearer 10|t20kZfl47hoJlxPOT0JvgYiWAqSP1vQ2Dks52BeG\n",
+			"headerData": [
+				{
+					"key": "Accept",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Authorization",
+					"value": "Bearer 10|t20kZfl47hoJlxPOT0JvgYiWAqSP1vQ2Dks52BeG",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "localhost:8000/api/v1/list-user",
+			"folder": "2981bbc9-d986-7a6a-390e-8542626a6a79",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1654298952126,
+			"name": "List user",
+			"description": "",
+			"collectionId": "20a9efc9-30a3-4bb7-5270-3f49d2f09fc9",
+			"responses": []
+		},
+		{
+			"id": "d23a4579-b8af-d219-2582-47ccbd760610",
+			"headers": "Accept: application/json\nAuthorization: Bearer 10|t20kZfl47hoJlxPOT0JvgYiWAqSP1vQ2Dks52BeG\n",
+			"headerData": [
+				{
+					"key": "Accept",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Authorization",
+					"value": "Bearer 10|t20kZfl47hoJlxPOT0JvgYiWAqSP1vQ2Dks52BeG",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "localhost:8000/api/v1/investments/invest",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [
+				{
+					"key": "users_id",
+					"value": "1",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "gains_id",
+					"value": "2",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "amount",
+					"value": "130.00",
+					"description": "Exemplo Decimal: 5.00",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "date",
+					"value": "2022-05-02",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "params",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1654366074393,
+			"name": "Create Invest",
+			"description": "",
+			"collectionId": "20a9efc9-30a3-4bb7-5270-3f49d2f09fc9",
+			"responses": []
+		},
+		{
+			"id": "d578ba38-4c01-0e2d-c18b-2bd82d901a74",
+			"headers": "Accept: application/json\nAuthorization: Bearer 11|YLkHpbI8L8viJFloI5morAuTixi9Iz69DLDErhpP\n",
+			"headerData": [
+				{
+					"key": "Accept",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Authorization",
+					"value": "Bearer 11|YLkHpbI8L8viJFloI5morAuTixi9Iz69DLDErhpP",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "localhost:8000/api/v1/withdrawals/list",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "GET",
+			"collectionId": "20a9efc9-30a3-4bb7-5270-3f49d2f09fc9",
+			"data": [
+				{
+					"key": "date_payment",
+					"value": "2022-07-12",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "params",
+			"name": "List withdrawal",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1654322347330,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"folder": "0bf4d180-0415-45cc-0442-11271f2bb3db"
+		},
+		{
+			"id": "dd5fe018-d9b7-c183-29b3-52d883bca9bf",
+			"headers": "",
+			"headerData": [],
+			"url": "localhost:8000/api/v1/login",
+			"folder": "29deb86d-7555-452e-0573-d91445e6fe5b",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [
+				{
+					"key": "email",
+					"value": "fristtram@gmail.com",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "password",
+					"value": "12345678",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "params",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1654366045328,
+			"name": "Login",
+			"description": "",
+			"collectionId": "20a9efc9-30a3-4bb7-5270-3f49d2f09fc9",
+			"responses": []
+		},
+		{
+			"id": "ff087a34-4ec8-8012-12f0-a18ecac1eeb8",
+			"headers": "Accept: application/json\nAuthorization: Bearer 11|YLkHpbI8L8viJFloI5morAuTixi9Iz69DLDErhpP\n",
+			"headerData": [
+				{
+					"key": "Accept",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Authorization",
+					"value": "Bearer 11|YLkHpbI8L8viJFloI5morAuTixi9Iz69DLDErhpP",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "localhost:8000/api/v1/investments/view-all-investment",
+			"folder": "7402f2aa-a77f-5a5a-f071-be46e4d80ff7",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [
+				{
+					"key": "date_payment",
+					"value": "2022-07-12",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "params",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1654320039835,
+			"name": "User investments",
+			"description": "",
+			"collectionId": "20a9efc9-30a3-4bb7-5270-3f49d2f09fc9",
+			"responses": []
+		}
+	]
+}
